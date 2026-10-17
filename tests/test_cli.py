@@ -28,13 +28,12 @@ class CliTest(unittest.TestCase):
 
     def test_violations_are_printed(self):
         code, out = self.run_cli("id\n1\n1\n", [{"column": "id", "rule": "unique"}])
+        self.assertEqual(code, 1)  # non-zero so CI jobs / schedulers can fail on bad data
         self.assertIn("duplicate of row 1", out)
 
     def test_invalid_rules_json(self):
-        csv_path = write_tmp("id
-1
-")
-        rules_path = write_tmp('[{"column": "id", "rule": "matches", "pattern": "\d"', suffix=".json")
+        csv_path = write_tmp("id\n1\n")
+        rules_path = write_tmp('[{"column": "id", "rule": "matches"', suffix=".json")  # truncated JSON
         self.addCleanup(os.remove, csv_path)
         self.addCleanup(os.remove, rules_path)
         with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()) as err:
