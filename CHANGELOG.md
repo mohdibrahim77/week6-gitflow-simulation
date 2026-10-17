@@ -5,6 +5,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-17
+
 ### Added
 - CSV loader with delimiter sniffing and BOM handling.
 - Validation rules: `not_null`, `unique`, `in_range`, `matches`, and a `run_rules` registry.
@@ -14,3 +16,6 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 
 ### Fixed
 - Invalid or unreadable rules files exit with code 2 and a clear message.
+
+[Unreleased]: https://github.com/mohdibrahim77/week7-gitflow-simulation/compare/v1.0.0...develop
+[1.0.0]: https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.0.0
