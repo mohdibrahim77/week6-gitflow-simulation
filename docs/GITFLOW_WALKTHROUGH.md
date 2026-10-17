@@ -34,7 +34,7 @@ feature work branches off `develop`.
 
 ```console
 $ git init -b main
-Initialized empty Git repository in C:/Users/admin/Desktop/Data Grokr/week7-gitflow-simulation/.git/
+Initialized empty Git repository in C:/Users/admin/Desktop/Data Grokr/week6-gitflow-simulation/.git/
 
 $ git add README.md .gitignore .gitattributes
 
@@ -50,10 +50,10 @@ $ git commit -m "chore: initial commit"
  create mode 100644 .gitignore
  create mode 100644 README.md
 
-$ git remote add origin https://github.com/mohdibrahim77/week7-gitflow-simulation.git
+$ git remote add origin https://github.com/mohdibrahim77/week6-gitflow-simulation.git
 
 $ git push -u origin main
-To https://github.com/mohdibrahim77/week7-gitflow-simulation.git
+To https://github.com/mohdibrahim77/week6-gitflow-simulation.git
  * [new branch]      main -> main
 branch 'main' set up to track 'origin/main'.
 
@@ -61,14 +61,14 @@ $ git switch -c develop
 Switched to a new branch 'develop'
 
 $ git push -u origin develop
-To https://github.com/mohdibrahim77/week7-gitflow-simulation.git
+To https://github.com/mohdibrahim77/week6-gitflow-simulation.git
  * [new branch]      develop -> develop
 branch 'develop' set up to track 'origin/develop'.
 ```
 
 ## 2. Feature branch → PR → `--no-ff` merge
 
-`feature/project-setup` → [#1](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/1). `develop` had not moved, so a plain merge *would* have
+`feature/project-setup` → [#1](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/1). `develop` had not moved, so a plain merge *would* have
 fast-forwarded. `--no-ff` forces a merge commit so the feature stays visible as one unit and can be
 reverted with a single `git revert -m 1 <merge>`.
 
@@ -86,7 +86,7 @@ Merge made by the 'ort' strategy.
  create mode 100644 CONTRIBUTING.md
 
 $ git push origin --delete feature/project-setup
-To https://github.com/mohdibrahim77/week7-gitflow-simulation.git
+To https://github.com/mohdibrahim77/week6-gitflow-simulation.git
  - [deleted]         feature/project-setup
 
 $ git log --oneline --graph
@@ -101,8 +101,8 @@ $ git log --oneline --graph
 
 ## 3. Fast-forward vs 3-way merge
 
-Two branches were opened from the same `develop`: `feature/csv-loader` ([#2](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/2)) and
-`docs/readme-badges` ([#3](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/3)).
+Two branches were opened from the same `develop`: `feature/csv-loader` ([#2](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/2)) and
+`docs/readme-badges` ([#3](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/3)).
 
 * `docs/readme-badges` merged first. `develop` had not moved, so `--ff-only` just slides the branch
   pointer forward. There is **no merge commit** and history stays a straight line.
@@ -124,7 +124,7 @@ Fast-forward
  1 file changed, 6 insertions(+)
 
 $ git push origin develop
-To https://github.com/mohdibrahim77/week7-gitflow-simulation.git
+To https://github.com/mohdibrahim77/week6-gitflow-simulation.git
    39424a0..02d3206  develop -> develop
 
 $ git log --oneline --graph -4
@@ -155,7 +155,7 @@ Merge made by the 'ort' strategy.
  create mode 100644 tests/test_loader.py
 
 $ git push origin develop
-To https://github.com/mohdibrahim77/week7-gitflow-simulation.git
+To https://github.com/mohdibrahim77/week6-gitflow-simulation.git
    02d3206..7196d51  develop -> develop
 
 $ git log --oneline --graph -7
@@ -309,11 +309,11 @@ $ git diff --stat ORIG_HEAD HEAD
 
 ## 6. Code review on a pull request
 
-[#4](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/4) got a review with two inline comments. One pointed out that `unique` treats blank cells as
-duplicates. That wasn't blocking, so it was tracked as issue [#5](https://github.com/mohdibrahim77/week7-gitflow-simulation/issues/5) instead of
+[#4](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/4) got a review with two inline comments. One pointed out that `unique` treats blank cells as
+duplicates. That wasn't blocking, so it was tracked as issue [#5](https://github.com/mohdibrahim77/week6-gitflow-simulation/issues/5) instead of
 holding the PR. (That bug shipped in 1.0.0 and was fixed by the hotfix in step 12.)
 
-[#6](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/6) (the CLI) got a blocking comment: *"returns 0 even when violations are found, so CI can
+[#6](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/6) (the CLI) got a blocking comment: *"returns 0 even when violations are found, so CI can
 never fail on bad data"*. It was fixed by a follow-up commit on the same branch before merging (step 7).
 
 The review process used here, also written down in [CONTRIBUTING.md](../CONTRIBUTING.md):
@@ -326,7 +326,7 @@ The review process used here, also written down in [CONTRIBUTING.md](../CONTRIBU
 
 ## 7. Rebase vs merge: updating a stale feature branch
 
-While [#6](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/6) waited for review, `feature/sample-data` ([#7](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/7)) was merged, so `feature/cli` was
+While [#6](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/6) waited for review, `feature/sample-data` ([#7](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/7)) was merged, so `feature/cli` was
 now based on an old `develop`. Two ways to catch up:
 
 * `git merge develop` into the feature: adds a merge commit and keeps the true history. This is used in step 10.
@@ -371,7 +371,7 @@ $ git commit -am "fix(cli): exit 1 when violations are found (review)"
  2 files changed, 7 insertions(+), 2 deletions(-)
 
 $ git push --force-with-lease origin feature/cli
-To https://github.com/mohdibrahim77/week7-gitflow-simulation.git
+To https://github.com/mohdibrahim77/week6-gitflow-simulation.git
  + 3906c5b...da99322 feature/cli -> feature/cli (forced update)
 ```
 
@@ -389,7 +389,7 @@ meantime, which makes it the safe form of `--force`.
 ## 8. Mistake: merged on red CI → bugfix PRs
 
 Running the new CLI against the sample data crashed: the sample rules JSON had unescaped regex
-backslashes. That was fixed through `bugfix/rules-json-escapes` ([#8](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/8)).
+backslashes. That was fixed through `bugfix/rules-json-escapes` ([#8](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/8)).
 
 ```console
 $ python -m dqcheck examples/customers.csv --rules examples/customers_rules.json
@@ -404,19 +404,19 @@ row    3  referral_code  unique    duplicate of row 2
 8 rows checked, 8 violation(s)
 ```
 
-But [#8](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/8) itself introduced a broken test file, and **CI on the PR was red when it was merged**.
-[#9](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/9) repaired it, and branch protection with a required CI status check was then enabled on
+But [#8](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/8) itself introduced a broken test file, and **CI on the PR was red when it was merged**.
+[#9](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/9) repaired it, and branch protection with a required CI status check was then enabled on
 `main` and `develop`. Lesson: never merge on red.
 
 ## 9. git clone + git pull (a second working copy)
 
-A second clone played the part of a teammate fixing a typo in CONTRIBUTING.md ([#10](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/10)). The
+A second clone played the part of a teammate fixing a typo in CONTRIBUTING.md ([#10](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/10)). The
 original working copy then caught up with `git pull`.
 
 ```console
 # a second working copy (a 'teammate') — git clone
 
-$ git clone https://github.com/mohdibrahim77/week7-gitflow-simulation.git teammate
+$ git clone https://github.com/mohdibrahim77/week6-gitflow-simulation.git teammate
 Cloning into 'teammate'...
 
 $ git branch -a
@@ -445,7 +445,7 @@ Merge made by the 'ort' strategy.
 # back in the original working copy: develop is now behind origin/develop
 
 $ git fetch origin
-From https://github.com/mohdibrahim77/week7-gitflow-simulation
+From https://github.com/mohdibrahim77/week6-gitflow-simulation
    2a8304e..272321a  develop    -> origin/develop
 
 $ git status -sb
@@ -468,9 +468,9 @@ create a surprise merge commit when your local branch has diverged.
 
 ## 10. Merge conflict and manual resolution
 
-`feature/text-report` ([#11](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/11)) and `feature/json-report` ([#12](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/12)) were developed in parallel.
+`feature/text-report` ([#11](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/11)) and `feature/json-report` ([#12](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/12)) were developed in parallel.
 Both created `dqcheck/report.py` and both edited the same lines of `cli.py` and `CHANGELOG.md`.
-After [#11](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/11) merged, GitHub marked [#12](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/12) as `mergeable: false`. Bringing `develop` into the
+After [#11](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/11) merged, GitHub marked [#12](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/12) as `mergeable: false`. Bringing `develop` into the
 branch:
 
 ```console
@@ -661,7 +661,7 @@ $ git commit -am "chore(release): bump version to 1.0.0"
 $ git tag -a v1.0.0 -m "dq-check 1.0.0"
 
 $ git push origin v1.0.0
-To https://github.com/mohdibrahim77/week7-gitflow-simulation.git
+To https://github.com/mohdibrahim77/week6-gitflow-simulation.git
  * [new tag]         v1.0.0 -> v1.0.0
 
 $ git merge --no-ff release/1.0.0 -m "Merge pull request #14 from mohdibrahim77/release/1.0.0" -m "Back-merge release 1.0.0 into develop"
@@ -671,12 +671,12 @@ Merge made by the 'ort' strategy.
  2 files changed, 6 insertions(+), 1 deletion(-)
 ```
 
-* `release/1.0.0` → `main` ([#13](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/13)), tagged `v1.0.0`, [GitHub release](https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.0.0).
-* The same branch was merged back into `develop` ([#14](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/14)) so `develop` has the bumped version.
+* `release/1.0.0` → `main` ([#13](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/13)), tagged `v1.0.0`, [GitHub release](https://github.com/mohdibrahim77/week6-gitflow-simulation/releases/tag/v1.0.0).
+* The same branch was merged back into `develop` ([#14](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/14)) so `develop` has the bumped version.
 
 ## 12. Hotfix from main
 
-Issue [#5](https://github.com/mohdibrahim77/week7-gitflow-simulation/issues/5) (blank values reported as duplicates) hit production in 1.0.0.
+Issue [#5](https://github.com/mohdibrahim77/week6-gitflow-simulation/issues/5) (blank values reported as duplicates) hit production in 1.0.0.
 `hotfix/1.0.1` was cut **from the `v1.0.0` tag on `main`**, not from `develop`, because `develop`
 already holds unreleased work.
 
@@ -710,14 +710,14 @@ row    8  signup_date    matches   does not match \d{4}-(0[1-9]|1[0-2])-\d{2}
 FAIL: 8 rows checked, 7 violation(s)
 ```
 
-[#15](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/15) merged into `main` and was tagged `v1.0.1`. The commit message `Fixes #5` closed the issue
+[#15](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/15) merged into `main` and was tagged `v1.0.1`. The commit message `Fixes #5` closed the issue
 automatically.
 
 ## 13. Cherry-pick the fix into develop
 
 Gitflow normally merges the hotfix branch into `develop` as well. Here that would also bring the
 `1.0.1` version bump, and `develop` is heading for 1.1.0. So **only the fix commit** was applied with
-`git cherry-pick -x` ([#16](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/16)).
+`git cherry-pick -x` ([#16](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/16)).
 
 ```console
 $ git log --oneline main -4
@@ -779,7 +779,7 @@ $ git commit -am "chore(release): bump version to 1.1.0"
 
 The automation didn't stop on the conflict. `git commit -am` **staged the conflicted file as it
 was, markers included**, and concluded the merge. Unit tests don't read CHANGELOG.md, so CI stayed
-green, and [#18](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/18) shipped `v1.1.0` with `<<<<<<< HEAD` in the changelog.
+green, and [#18](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/18) shipped `v1.1.0` with `<<<<<<< HEAD` in the changelog.
 
 Fix, done the Gitflow way (a published tag is never rewritten):
 
@@ -797,10 +797,10 @@ $ git commit -am "fix(changelog): remove merge-conflict markers shipped in 1.1.0
  3 files changed, 16 insertions(+), 5 deletions(-)
 ```
 
-* `hotfix/1.1.1` from tag `v1.1.0` → [#20](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/20) into `main`, tagged `v1.1.1`.
+* `hotfix/1.1.1` from tag `v1.1.0` → [#20](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/20) into `main`, tagged `v1.1.1`.
 * CI got a new step that fails if any tracked file contains conflict markers:
   `git grep -n -E '^(<<<<<<<|>>>>>>>)( |$)'`.
-* This time the hotfix was **merged** back into `develop` ([#21](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/21)), the classic Gitflow way.
+* This time the hotfix was **merged** back into `develop` ([#21](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/21)), the classic Gitflow way.
   Compare it with the cherry-pick in §13: here every hotfix commit belongs on `develop` too.
 
 **Lessons:** after `git merge` always check `git status` (or `git diff --name-only --diff-filter=U`)
