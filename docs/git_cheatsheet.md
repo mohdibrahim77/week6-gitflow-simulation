@@ -1,4 +1,4 @@
-# Git cheat sheet — Week 7
+# Git cheat sheet — Week 6
 
 ## Basics
 
