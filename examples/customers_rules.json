@@ -1,0 +1,11 @@
+[
+  {"column": "customer_id",   "rule": "not_null"},
+  {"column": "customer_id",   "rule": "unique"},
+  {"column": "customer_id",   "rule": "matches", "pattern": "C\d{3}"},
+  {"column": "email",         "rule": "not_null"},
+  {"column": "email",         "rule": "matches", "pattern": "[^@\s]+@[^@\s]+\.[a-z]{2,}"},
+  {"column": "city",          "rule": "not_null"},
+  {"column": "age",           "rule": "in_range", "min": 0, "max": 120},
+  {"column": "signup_date",   "rule": "matches", "pattern": "\d{4}-(0[1-9]|1[0-2])-\d{2}"},
+  {"column": "referral_code", "rule": "unique"}
+]
