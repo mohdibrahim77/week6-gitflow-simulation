@@ -27,10 +27,12 @@ def not_null(rows, column):
 
 
 def unique(rows, column):
-    """Values in ``column`` must not repeat."""
+    """Non-empty values in ``column`` must not repeat (blanks are ``not_null``'s job)."""
     seen, out = {}, []
     for i, r in enumerate(rows, 1):
         value = r.get(column)
+        if _is_empty(value):
+            continue
         if value in seen:
             out.append(Violation("unique", column, i, value, f"duplicate of row {seen[value]}"))
         else:
