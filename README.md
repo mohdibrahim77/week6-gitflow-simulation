@@ -1,10 +1,10 @@
 # dq-check — Gitflow Simulation
 
-![CI](https://github.com/mohdibrahim77/week7-gitflow-simulation/actions/workflows/ci.yml/badge.svg?branch=develop)
+![CI](https://github.com/mohdibrahim77/week6-gitflow-simulation/actions/workflows/ci.yml/badge.svg?branch=develop)
 ![Python](https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white)
 ![Workflow](https://img.shields.io/badge/workflow-Gitflow-F05032?logo=git&logoColor=white)
-![PRs](https://img.shields.io/github/issues-pr-closed/mohdibrahim77/week7-gitflow-simulation?label=pull%20requests&logo=github&color=6f42c1)
-![Data Grokr](https://img.shields.io/badge/Data%20Grokr-Week%207%20Mini%20Project-orange)
+![PRs](https://img.shields.io/github/issues-pr-closed/mohdibrahim77/week6-gitflow-simulation?label=pull%20requests&logo=github&color=6f42c1)
+![Data Grokr](https://img.shields.io/badge/Data%20Grokr-Week%206%20Mini%20Project-orange)
 
 **Mini project: full Gitflow simulation.** A small, real Python tool (a CSV data-quality checker)
 was built feature by feature using the complete Gitflow workflow:
@@ -12,8 +12,8 @@ was built feature by feature using the complete Gitflow workflow:
 > `feature/*` branch → pull request (template + review + CI) → merge into `develop` → `release/*` → `main` + tag → `hotfix/*` → cherry-pick back
 
 The **repository history itself is the deliverable**. Open the
-[network graph](https://github.com/mohdibrahim77/week7-gitflow-simulation/network),
-the [closed pull requests](https://github.com/mohdibrahim77/week7-gitflow-simulation/pulls?q=is%3Apr+is%3Aclosed)
+[network graph](https://github.com/mohdibrahim77/week6-gitflow-simulation/network),
+the [closed pull requests](https://github.com/mohdibrahim77/week6-gitflow-simulation/pulls?q=is%3Apr+is%3Aclosed)
 or run `git log --oneline --graph --all` after cloning.
 
 📖 **[docs/GITFLOW_WALKTHROUGH.md](docs/GITFLOW_WALKTHROUGH.md)** — every step with the real command output
@@ -27,7 +27,7 @@ or run `git log --oneline --graph --all` after cloning.
 
 - [The history at a glance](#the-history-at-a-glance)
 - [Pull requests](#pull-requests)
-- [Week 7 topics → where they happened](#week-7-topics--where-they-happened)
+- [Week 6 topics → where they happened](#week-6-topics--where-they-happened)
 - [Release history](#release-history)
 - [The tool: dq-check](#the-tool-dq-check)
 - [Practise it yourself](#practise-it-yourself)
@@ -113,32 +113,34 @@ back-port in #16 is a cherry-pick on its own branch. `git log --graph` shows the
 
 | PR | Branch → base | Demonstrates |
 |---|---|---|
-| [#1](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/1) | `feature/project-setup` → `develop` | first feature, PR template, CI, `--no-ff` merge |
-| [#2](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/2) | `feature/csv-loader` → `develop` | **3-way merge** (develop had moved) |
-| [#3](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/3) | `docs/readme-badges` → `develop` | **fast-forward** merge (`--ff-only`) |
-| [#4](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/4) | `feature/validation-rules` → `develop` | **interactive rebase** (7→3 commits), **stash**, **code review** with inline comments, deferred issue [#5](https://github.com/mohdibrahim77/week7-gitflow-simulation/issues/5) |
-| [#6](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/6) | `feature/cli` → `develop` | review with a requested change, **rebase onto develop**, `--force-with-lease` |
-| [#7](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/7) | `feature/sample-data` → `develop` | parallel PR that made #6 stale |
-| [#8](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/8) | `bugfix/rules-json-escapes` → `develop` | bugfix branch (merged on red CI, an honest mistake) |
-| [#9](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/9) | `bugfix/test-cli-syntax` → `develop` | repair, then branch protection with a required CI check |
-| [#10](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/10) | `docs/fix-contributing-typo` → `develop` | made from a **second clone**, then `git pull` |
-| [#11](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/11) | `feature/text-report` → `develop` | merged first… |
-| [#12](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/12) | `feature/json-report` → `develop` | …so this one hit a **merge conflict** (content + add/add), resolved by hand |
-| [#13](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/13) | `release/1.0.0` → `main` | **release branch**, tag `v1.0.0` |
-| [#14](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/14) | `release/1.0.0` → `develop` | back-merge of the release |
-| [#15](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/15) | `hotfix/1.0.1` → `main` | **hotfix** from the production tag, `Fixes #5` auto-closed the issue, tag `v1.0.1` |
-| [#16](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/16) | `chore/backport-unique-fix` → `develop` | **cherry-pick -x** of only the fix commit |
-| [#17](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/17) | `docs/gitflow-walkthrough` → `develop` | this documentation |
-| [#18](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/18) | `release/1.1.0` → `main` | second release, tag `v1.1.0`. Shipped a CHANGELOG with unresolved conflict markers (mistake #2) |
-| [#19](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/19) | `release/1.1.0` → `develop` | back-merge |
-| [#20](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/20) | `hotfix/1.1.1` → `main` | **hotfix** for #18's CHANGELOG, plus a CI check for conflict markers, tag `v1.1.1` |
-| [#21](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/21) | `hotfix/1.1.1` → `develop` | hotfix **merged** back (classic Gitflow), compare with the cherry-pick in #16 |
-| [#22](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/22) | `hotfix/readme-pr-badge` → `main` | docs-only hotfix: the hard-coded PR-count badge was wrong (#5 is an issue, not a PR). No version bump |
-| [#23](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/23) | `hotfix/readme-pr-badge` → `develop` | back-merge |
+| [#1](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/1) | `feature/project-setup` → `develop` | first feature, PR template, CI, `--no-ff` merge |
+| [#2](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/2) | `feature/csv-loader` → `develop` | **3-way merge** (develop had moved) |
+| [#3](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/3) | `docs/readme-badges` → `develop` | **fast-forward** merge (`--ff-only`) |
+| [#4](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/4) | `feature/validation-rules` → `develop` | **interactive rebase** (7→3 commits), **stash**, **code review** with inline comments, deferred issue [#5](https://github.com/mohdibrahim77/week6-gitflow-simulation/issues/5) |
+| [#6](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/6) | `feature/cli` → `develop` | review with a requested change, **rebase onto develop**, `--force-with-lease` |
+| [#7](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/7) | `feature/sample-data` → `develop` | parallel PR that made #6 stale |
+| [#8](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/8) | `bugfix/rules-json-escapes` → `develop` | bugfix branch (merged on red CI, an honest mistake) |
+| [#9](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/9) | `bugfix/test-cli-syntax` → `develop` | repair, then branch protection with a required CI check |
+| [#10](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/10) | `docs/fix-contributing-typo` → `develop` | made from a **second clone**, then `git pull` |
+| [#11](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/11) | `feature/text-report` → `develop` | merged first… |
+| [#12](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/12) | `feature/json-report` → `develop` | …so this one hit a **merge conflict** (content + add/add), resolved by hand |
+| [#13](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/13) | `release/1.0.0` → `main` | **release branch**, tag `v1.0.0` |
+| [#14](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/14) | `release/1.0.0` → `develop` | back-merge of the release |
+| [#15](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/15) | `hotfix/1.0.1` → `main` | **hotfix** from the production tag, `Fixes #5` auto-closed the issue, tag `v1.0.1` |
+| [#16](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/16) | `chore/backport-unique-fix` → `develop` | **cherry-pick -x** of only the fix commit |
+| [#17](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/17) | `docs/gitflow-walkthrough` → `develop` | this documentation |
+| [#18](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/18) | `release/1.1.0` → `main` | second release, tag `v1.1.0`. Shipped a CHANGELOG with unresolved conflict markers (mistake #2) |
+| [#19](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/19) | `release/1.1.0` → `develop` | back-merge |
+| [#20](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/20) | `hotfix/1.1.1` → `main` | **hotfix** for #18's CHANGELOG, plus a CI check for conflict markers, tag `v1.1.1` |
+| [#21](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/21) | `hotfix/1.1.1` → `develop` | hotfix **merged** back (classic Gitflow), compare with the cherry-pick in #16 |
+| [#22](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/22) | `hotfix/readme-pr-badge` → `main` | docs-only hotfix: the hard-coded PR-count badge was wrong (#5 is an issue, not a PR). No version bump |
+| [#23](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/23) | `hotfix/readme-pr-badge` → `develop` | back-merge |
+| [#24](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/24) | `hotfix/rename-week6` → `main` | docs-only hotfix: project renamed from Week 7 to **Week 6** (repo and every link) |
+| [#25](https://github.com/mohdibrahim77/week6-gitflow-simulation/pull/25) | `hotfix/rename-week6` → `develop` | back-merge |
 
 ---
 
-## Week 7 topics → where they happened
+## Week 6 topics → where they happened
 
 | Topic | Where |
 |---|---|
@@ -158,10 +160,10 @@ back-port in #16 is a cherry-pick on its own branch. `git log --graph` shows the
 
 | Tag | From | Notes |
 |---|---|---|
-| [v1.0.0](https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.0.0) | `release/1.0.0` | loader, rules, CLI, text + JSON reports |
-| [v1.0.1](https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.0.1) | `hotfix/1.0.1` | `unique` ignores blank values ([#5](https://github.com/mohdibrahim77/week7-gitflow-simulation/issues/5)) |
-| [v1.1.0](https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.1.0) | `release/1.1.0` | Gitflow walkthrough, sandbox script, cheat sheet, test prep |
-| [v1.1.1](https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.1.1) | `hotfix/1.1.1` | repaired CHANGELOG; CI fails on merge-conflict markers |
+| [v1.0.0](https://github.com/mohdibrahim77/week6-gitflow-simulation/releases/tag/v1.0.0) | `release/1.0.0` | loader, rules, CLI, text + JSON reports |
+| [v1.0.1](https://github.com/mohdibrahim77/week6-gitflow-simulation/releases/tag/v1.0.1) | `hotfix/1.0.1` | `unique` ignores blank values ([#5](https://github.com/mohdibrahim77/week6-gitflow-simulation/issues/5)) |
+| [v1.1.0](https://github.com/mohdibrahim77/week6-gitflow-simulation/releases/tag/v1.1.0) | `release/1.1.0` | Gitflow walkthrough, sandbox script, cheat sheet, test prep |
+| [v1.1.1](https://github.com/mohdibrahim77/week6-gitflow-simulation/releases/tag/v1.1.1) | `hotfix/1.1.1` | repaired CHANGELOG; CI fails on merge-conflict markers |
 
 Details are in [CHANGELOG.md](CHANGELOG.md).
 
@@ -209,8 +211,8 @@ python -m unittest discover -s tests -v     # 22 tests; CI runs them on Python 3
 ## Practise it yourself
 
 ```bash
-git clone https://github.com/mohdibrahim77/week7-gitflow-simulation.git
-cd week7-gitflow-simulation
+git clone https://github.com/mohdibrahim77/week6-gitflow-simulation.git
+cd week6-gitflow-simulation
 git log --oneline --graph --all          # the whole Gitflow story
 bash scripts/gitflow_sandbox.sh           # 8 demos in throwaway repos
 bash scripts/gitflow_sandbox.sh 6         # just the interactive-rebase demo
@@ -221,7 +223,7 @@ bash scripts/gitflow_sandbox.sh 6         # just the interactive-rebase demo
 ## Repository layout
 
 ```text
-week7-gitflow-simulation/
+week6-gitflow-simulation/
 ├── dqcheck/                  # the tool: loader, rules, report, cli
 ├── tests/                    # unittest suite (22 tests)
 ├── examples/                 # dirty sample CSV + rule file
@@ -237,4 +239,4 @@ week7-gitflow-simulation/
 └── CHANGELOG.md              # Keep a Changelog + SemVer
 ```
 
-*Data Grokr — Week 7 mini project.*
+*Data Grokr — Week 6 mini project.*

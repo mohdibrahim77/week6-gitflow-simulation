@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# gitflow_sandbox.sh — replay every Week 7 git concept in a throwaway repo
+# gitflow_sandbox.sh — replay every Week 6 git concept in a throwaway repo
 # -----------------------------------------------------------------------------
 #   bash scripts/gitflow_sandbox.sh            # runs all demos
 #   bash scripts/gitflow_sandbox.sh 3          # runs only demo 3
