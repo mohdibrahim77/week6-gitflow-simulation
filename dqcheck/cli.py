@@ -9,6 +9,7 @@ import sys
 
 from . import __version__
 from .loader import LoadError, load_csv
+from .report import render_json
 from .rules import run_rules
 
 
@@ -16,6 +17,7 @@ def build_parser():
     p = argparse.ArgumentParser(prog="dqcheck", description="Data-quality checks for CSV files.")
     p.add_argument("csv", help="CSV file to check")
     p.add_argument("--rules", required=True, help="JSON file containing a list of rule specs")
+    p.add_argument("--format", choices=["text", "json"], default="text", help="output format")
     p.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     return p
 
@@ -34,7 +36,10 @@ def main(argv=None):
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         print(f"error: invalid rules file {args.rules}: {exc}", file=sys.stderr)
         return 2
-    for v in violations:
-        print(f"row {v.row:>4}  {v.column:<14} {v.rule:<9} {v.message}")
-    print(f"{len(rows)} rows checked, {len(violations)} violation(s)")
+    if args.format == "json":
+        print(render_json(violations, len(rows)))
+    else:
+        for v in violations:
+            print(f"row {v.row:>4}  {v.column:<14} {v.rule:<9} {v.message}")
+        print(f"{len(rows)} rows checked, {len(violations)} violation(s)")
     return 1 if violations else 0

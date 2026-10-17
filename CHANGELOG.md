@@ -9,6 +9,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 - CSV loader with delimiter sniffing and BOM handling.
 - Validation rules: `not_null`, `unique`, `in_range`, `matches`, and a `run_rules` registry.
 - `dqcheck` CLI (`python -m dqcheck data.csv --rules rules.json`).
+- `--format json` output for CI pipelines and dashboards.
 
 ### Fixed
 - Invalid or unreadable rules files exit with code 2 and a clear message.
