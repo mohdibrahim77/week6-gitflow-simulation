@@ -3,7 +3,7 @@
 ![CI](https://github.com/mohdibrahim77/week7-gitflow-simulation/actions/workflows/ci.yml/badge.svg?branch=develop)
 ![Python](https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white)
 ![Workflow](https://img.shields.io/badge/workflow-Gitflow-F05032?logo=git&logoColor=white)
-![PRs](https://img.shields.io/badge/pull%20requests-21%20merged-6f42c1?logo=github)
+![PRs](https://img.shields.io/github/issues-pr-closed/mohdibrahim77/week7-gitflow-simulation?label=pull%20requests&logo=github&color=6f42c1)
 ![Data Grokr](https://img.shields.io/badge/Data%20Grokr-Week%207%20Mini%20Project-orange)
 
 **Mini project: full Gitflow simulation.** A small, real Python tool (a CSV data-quality checker)
@@ -133,6 +133,8 @@ back-port in #16 is a cherry-pick on its own branch. `git log --graph` shows the
 | [#19](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/19) | `release/1.1.0` → `develop` | back-merge |
 | [#20](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/20) | `hotfix/1.1.1` → `main` | **hotfix** for #18's CHANGELOG, plus a CI check for conflict markers, tag `v1.1.1` |
 | [#21](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/21) | `hotfix/1.1.1` → `develop` | hotfix **merged** back (classic Gitflow), compare with the cherry-pick in #16 |
+| [#22](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/22) | `hotfix/readme-pr-badge` → `main` | docs-only hotfix: the hard-coded PR-count badge was wrong (#5 is an issue, not a PR). No version bump |
+| [#23](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/23) | `hotfix/readme-pr-badge` → `develop` | back-merge |
 
 ---
 
