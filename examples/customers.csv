@@ -1,0 +1,9 @@
+customer_id,full_name,email,city,age,signup_date,referral_code
+C001,Aarav Sharma,aarav.sharma@example.com,Pune,34,2025-01-14,REF100
+C002,Diya Reddy,diya.reddy@example.com,Hyderabad,29,2025-02-03,
+C003,Rohan Das,rohan.das@example,Kolkata,41,2025-02-19,
+C004,Meera Nair,,Kochi,27,2025-03-07,REF104
+C004,Kabir Khan,kabir.khan@example.com,Delhi,52,2025-03-21,REF105
+C006,Ananya Iyer,ananya.iyer@example.com,Chennai,-3,2025-04-02,REF106
+C007,Vikram Singh,vikram.singh@example.com,,38,2025-04-18,REF107
+C008,Sneha Patel,sneha.patel@example.com,Ahmedabad,abc,2025-13-01,REF108
