@@ -37,4 +37,4 @@ Examples: `feat(rules): add unique rule`, `fix(loader): strip UTF-8 BOM`.
 python -m unittest discover -s tests -v
 ```
 
-Every PR must recieve a review before merge.
+Every PR must receive a review before merge.
