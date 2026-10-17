@@ -46,6 +46,17 @@ class CliTest(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("8 rows checked", out.getvalue())
 
+    def test_json_format(self):
+        csv_path = write_tmp("id\n1\n1\n")
+        rules_path = write_tmp(json.dumps([{"column": "id", "rule": "unique"}]), suffix=".json")
+        self.addCleanup(os.remove, csv_path)
+        self.addCleanup(os.remove, rules_path)
+        with redirect_stdout(io.StringIO()) as out:
+            code = main([csv_path, "--rules", rules_path, "--format", "json"])
+        doc = json.loads(out.getvalue())
+        self.assertEqual(code, 1)
+        self.assertEqual(doc["violation_count"], 1)
+
     def test_missing_file(self):
         with redirect_stderr(io.StringIO()):
             self.assertEqual(main(["nope.csv", "--rules", "nope.json"]), 2)
