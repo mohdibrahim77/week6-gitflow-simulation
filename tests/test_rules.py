@@ -22,6 +22,10 @@ class UniqueTest(unittest.TestCase):
         self.assertEqual(v[0].row, 3)
         self.assertIn("row 2", v[0].message)
 
+    def test_blank_values_are_not_duplicates(self):  # regression test for #5
+        rows = [{"code": ""}, {"code": "  "}, {"code": None}, {"code": "A"}]
+        self.assertEqual(unique(rows, "code"), [])
+
 
 class InRangeTest(unittest.TestCase):
     def test_out_of_range_and_not_numeric(self):
