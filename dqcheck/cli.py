@@ -1,4 +1,7 @@
-"""Command-line entry point:  python -m dqcheck data.csv --rules rules.json"""
+"""Command-line entry point:  python -m dqcheck data.csv --rules rules.json
+
+Exit codes: 0 = clean, 1 = violations found, 2 = file could not be loaded.
+"""
 
 import argparse
 import json
@@ -30,4 +33,4 @@ def main(argv=None):
     for v in violations:
         print(f"row {v.row:>4}  {v.column:<14} {v.rule:<9} {v.message}")
     print(f"{len(rows)} rows checked, {len(violations)} violation(s)")
-    return 0
+    return 1 if violations else 0

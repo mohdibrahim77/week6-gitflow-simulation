@@ -9,6 +9,8 @@ from tests.helpers import write_tmp
 
 
 class CliTest(unittest.TestCase):
+    """Exercise main() end to end with temporary files."""
+
     def run_cli(self, csv_text, rules):
         csv_path = write_tmp(csv_text)
         rules_path = write_tmp(json.dumps(rules), suffix=".json")
