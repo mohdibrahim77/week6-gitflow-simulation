@@ -6,3 +6,4 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 ## [Unreleased]
 
 ### Added
+- CSV loader with delimiter sniffing and BOM handling.
