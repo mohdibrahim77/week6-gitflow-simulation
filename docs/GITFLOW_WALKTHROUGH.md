@@ -23,6 +23,7 @@ review comments, the CI checks and the merge.
 11. [Release branch → main, tag, back-merge](#11-release-branch--main-tag-back-merge)
 12. [Hotfix from main](#12-hotfix-from-main)
 13. [Cherry-pick the fix into develop](#13-cherry-pick-the-fix-into-develop)
+14. [Mistake #2: conflict markers shipped in 1.1.0 → hotfix 1.1.1](#14-mistake-2-conflict-markers-shipped-in-110--hotfix-111)
 
 ---
 
@@ -755,6 +756,56 @@ Merge made by the 'ort' strategy.
 `-x` appended `(cherry picked from commit 6a57577…)`, so anyone reading `develop` can trace the
 commit back to the hotfix.
 
+## 14. Mistake #2: conflict markers shipped in 1.1.0 → hotfix 1.1.1
+
+`release/1.1.0` was synced with `main` before release. The fix for #5 was already on both sides,
+so that merged cleanly, **but `CHANGELOG.md` conflicted**: `develop` had a new *Added* list under
+*Unreleased*, right where `main` had inserted the 1.0.1 section.
+
+```console
+# sync with main first: it contains the 1.0.1 hotfix merge
+
+$ git merge main -m "Merge branch 'main' into release/1.1.0"
+Auto-merging CHANGELOG.md
+CONFLICT (content): Merge conflict in CHANGELOG.md
+Automatic merge failed; fix conflicts and then commit the result.
+
+$ grep __version__ dqcheck/__init__.py
+__version__ = "1.0.1"
+
+$ git commit -am "chore(release): bump version to 1.1.0"
+[release/1.1.0 6ad14ff] chore(release): bump version to 1.1.0
+```
+
+The automation didn't stop on the conflict. `git commit -am` **staged the conflicted file as it
+was, markers included**, and concluded the merge. Unit tests don't read CHANGELOG.md, so CI stayed
+green, and [#18](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/18) shipped `v1.1.0` with `<<<<<<< HEAD` in the changelog.
+
+Fix, done the Gitflow way (a published tag is never rewritten):
+
+```console
+$ git switch -c hotfix/1.1.1 v1.1.0
+Switched to a new branch 'hotfix/1.1.1'
+
+$ git grep -n -E "^(<<<<<<<|=======|>>>>>>>)( |$)" -- CHANGELOG.md
+CHANGELOG.md:8:<<<<<<< HEAD
+CHANGELOG.md:14:=======
+CHANGELOG.md:15:>>>>>>> main
+
+$ git commit -am "fix(changelog): remove merge-conflict markers shipped in 1.1.0"
+[hotfix/1.1.1 7f51e2e] fix(changelog): remove merge-conflict markers shipped in 1.1.0
+ 3 files changed, 16 insertions(+), 5 deletions(-)
+```
+
+* `hotfix/1.1.1` from tag `v1.1.0` → [#20](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/20) into `main`, tagged `v1.1.1`.
+* CI got a new step that fails if any tracked file contains conflict markers:
+  `git grep -n -E '^(<<<<<<<|>>>>>>>)( |$)'`.
+* This time the hotfix was **merged** back into `develop` ([#21](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/21)), the classic Gitflow way.
+  Compare it with the cherry-pick in §13: here every hotfix commit belongs on `develop` too.
+
+**Lessons:** after `git merge` always check `git status` (or `git diff --name-only --diff-filter=U`)
+before committing, never `commit -a` in the middle of a merge, and let CI check for things tests can't see.
+
 ---
 
-*The final release that ships this documentation is described in the [README](../README.md#release-history).*
+*Release history and tags are listed in the [README](../README.md#release-history).*

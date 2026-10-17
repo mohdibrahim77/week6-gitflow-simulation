@@ -3,7 +3,7 @@
 ![CI](https://github.com/mohdibrahim77/week7-gitflow-simulation/actions/workflows/ci.yml/badge.svg?branch=develop)
 ![Python](https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white)
 ![Workflow](https://img.shields.io/badge/workflow-Gitflow-F05032?logo=git&logoColor=white)
-![PRs](https://img.shields.io/badge/pull%20requests-19%20merged-6f42c1?logo=github)
+![PRs](https://img.shields.io/badge/pull%20requests-21%20merged-6f42c1?logo=github)
 ![Data Grokr](https://img.shields.io/badge/Data%20Grokr-Week%207%20Mini%20Project-orange)
 
 **Mini project: full Gitflow simulation.** A small, real Python tool (a CSV data-quality checker)
@@ -95,6 +95,13 @@ gitGraph
     merge release/1.1.0 id: "#18" tag: "v1.1.0"
     checkout develop
     merge release/1.1.0 id: "#19 back-merge"
+    checkout main
+    branch hotfix/1.1.1
+    commit id: "fix CHANGELOG markers + CI check"
+    checkout main
+    merge hotfix/1.1.1 id: "#20" tag: "v1.1.1"
+    checkout develop
+    merge hotfix/1.1.1 id: "#21 back-merge"
 ```
 
 *(Simplified: in the real history every feature lands through a `--no-ff` merge commit, and the
@@ -122,8 +129,10 @@ back-port in #16 is a cherry-pick on its own branch. `git log --graph` shows the
 | [#15](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/15) | `hotfix/1.0.1` → `main` | **hotfix** from the production tag, `Fixes #5` auto-closed the issue, tag `v1.0.1` |
 | [#16](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/16) | `chore/backport-unique-fix` → `develop` | **cherry-pick -x** of only the fix commit |
 | [#17](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/17) | `docs/gitflow-walkthrough` → `develop` | this documentation |
-| [#18](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/18) | `release/1.1.0` → `main` | second release (synced with `main` first), tag `v1.1.0` |
+| [#18](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/18) | `release/1.1.0` → `main` | second release, tag `v1.1.0`. Shipped a CHANGELOG with unresolved conflict markers (mistake #2) |
 | [#19](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/19) | `release/1.1.0` → `develop` | back-merge |
+| [#20](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/20) | `hotfix/1.1.1` → `main` | **hotfix** for #18's CHANGELOG, plus a CI check for conflict markers, tag `v1.1.1` |
+| [#21](https://github.com/mohdibrahim77/week7-gitflow-simulation/pull/21) | `hotfix/1.1.1` → `develop` | hotfix **merged** back (classic Gitflow), compare with the cherry-pick in #16 |
 
 ---
 
@@ -139,7 +148,7 @@ back-port in #16 is a cherry-pick on its own branch. `git log --graph` shows the
 | `git rebase` vs merge, pros & cons | [§7](docs/GITFLOW_WALKTHROUGH.md#7-rebase-vs-merge-updating-a-stale-feature-branch), PR #6 |
 | Interactive rebase: squash, fixup, reorder | [§5](docs/GITFLOW_WALKTHROUGH.md#5-interactive-rebase-squash-fixup-reorder-reword), PR #4 |
 | `git cherry-pick` | [§13](docs/GITFLOW_WALKTHROUGH.md#13-cherry-pick-the-fix-into-develop), PR #16 |
-| Gitflow release & hotfix | [§11](docs/GITFLOW_WALKTHROUGH.md#11-release-branch--main-tag-back-merge), [§12](docs/GITFLOW_WALKTHROUGH.md#12-hotfix-from-main), tags `v1.0.0`, `v1.0.1`, `v1.1.0` |
+| Gitflow release & hotfix | [§11](docs/GITFLOW_WALKTHROUGH.md#11-release-branch--main-tag-back-merge), [§12](docs/GITFLOW_WALKTHROUGH.md#12-hotfix-from-main), [§14](docs/GITFLOW_WALKTHROUGH.md#14-mistake-2-conflict-markers-shipped-in-110--hotfix-111), tags `v1.0.0` → `v1.1.1` |
 
 ---
 
@@ -150,6 +159,7 @@ back-port in #16 is a cherry-pick on its own branch. `git log --graph` shows the
 | [v1.0.0](https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.0.0) | `release/1.0.0` | loader, rules, CLI, text + JSON reports |
 | [v1.0.1](https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.0.1) | `hotfix/1.0.1` | `unique` ignores blank values ([#5](https://github.com/mohdibrahim77/week7-gitflow-simulation/issues/5)) |
 | [v1.1.0](https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.1.0) | `release/1.1.0` | Gitflow walkthrough, sandbox script, cheat sheet, test prep |
+| [v1.1.1](https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.1.1) | `hotfix/1.1.1` | repaired CHANGELOG; CI fails on merge-conflict markers |
 
 Details are in [CHANGELOG.md](CHANGELOG.md).
 
