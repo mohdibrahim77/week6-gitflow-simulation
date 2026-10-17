@@ -5,6 +5,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 
 ## [Unreleased]
 
+### Added
+- Gitflow walkthrough with real command output (`docs/GITFLOW_WALKTHROUGH.md`).
+- `scripts/gitflow_sandbox.sh`: 8 self-contained git demos.
+- Git cheat sheet and test-prep questions.
+
 ## [1.0.1] - 2026-10-17
 
 ### Fixed
