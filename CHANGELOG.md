@@ -5,6 +5,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-10-17
+
+### Fixed
+- `unique` no longer reports blank values as duplicates (#5).
+
 ## [1.0.0] - 2026-10-17
 
 ### Added
@@ -17,5 +22,6 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 ### Fixed
 - Invalid or unreadable rules files exit with code 2 and a clear message.
 
-[Unreleased]: https://github.com/mohdibrahim77/week7-gitflow-simulation/compare/v1.0.0...develop
+[Unreleased]: https://github.com/mohdibrahim77/week7-gitflow-simulation/compare/v1.0.1...develop
+[1.0.1]: https://github.com/mohdibrahim77/week7-gitflow-simulation/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.0.0
