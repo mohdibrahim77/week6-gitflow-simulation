@@ -9,7 +9,7 @@ import sys
 
 from . import __version__
 from .loader import LoadError, load_csv
-from .report import render_json
+from .report import render_json, render_text
 from .rules import run_rules
 
 
@@ -36,10 +36,6 @@ def main(argv=None):
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         print(f"error: invalid rules file {args.rules}: {exc}", file=sys.stderr)
         return 2
-    if args.format == "json":
-        print(render_json(violations, len(rows)))
-    else:
-        for v in violations:
-            print(f"row {v.row:>4}  {v.column:<14} {v.rule:<9} {v.message}")
-        print(f"{len(rows)} rows checked, {len(violations)} violation(s)")
+    render = render_json if args.format == "json" else render_text
+    print(render(violations, len(rows)))
     return 1 if violations else 0
