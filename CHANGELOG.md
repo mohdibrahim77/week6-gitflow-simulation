@@ -5,11 +5,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 
 ## [Unreleased]
 
+<<<<<<< HEAD
 ### Added
 - Gitflow walkthrough with real command output (`docs/GITFLOW_WALKTHROUGH.md`).
 - `scripts/gitflow_sandbox.sh`: 8 self-contained git demos.
 - Git cheat sheet and test-prep questions.
 
+=======
+>>>>>>> main
 ## [1.0.1] - 2026-10-17
 
 ### Fixed
@@ -27,6 +30,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 ### Fixed
 - Invalid or unreadable rules files exit with code 2 and a clear message.
 
-[Unreleased]: https://github.com/mohdibrahim77/week7-gitflow-simulation/compare/v1.0.1...develop
+[Unreleased]: https://github.com/mohdibrahim77/week7-gitflow-simulation/compare/v1.1.0...develop
+[1.1.0]: https://github.com/mohdibrahim77/week7-gitflow-simulation/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/mohdibrahim77/week7-gitflow-simulation/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/mohdibrahim77/week7-gitflow-simulation/releases/tag/v1.0.0
