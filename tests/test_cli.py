@@ -30,6 +30,23 @@ class CliTest(unittest.TestCase):
         code, out = self.run_cli("id\n1\n1\n", [{"column": "id", "rule": "unique"}])
         self.assertIn("duplicate of row 1", out)
 
+    def test_invalid_rules_json(self):
+        csv_path = write_tmp("id
+1
+")
+        rules_path = write_tmp('[{"column": "id", "rule": "matches", "pattern": "\d"', suffix=".json")
+        self.addCleanup(os.remove, csv_path)
+        self.addCleanup(os.remove, rules_path)
+        with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()) as err:
+            self.assertEqual(main([csv_path, "--rules", rules_path]), 2)
+        self.assertIn("invalid rules file", err.getvalue())
+
+    def test_examples_run(self):
+        with redirect_stdout(io.StringIO()) as out:
+            code = main(["examples/customers.csv", "--rules", "examples/customers_rules.json"])
+        self.assertEqual(code, 1)
+        self.assertIn("8 rows checked", out.getvalue())
+
     def test_missing_file(self):
         with redirect_stderr(io.StringIO()):
             self.assertEqual(main(["nope.csv", "--rules", "nope.json"]), 2)
